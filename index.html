@@ -3,8 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中国护照签证要求速查面板</title>
+<title>首页</title>
 <style>
+  /* 全局基础样式 */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* 主页面容器：极简居中 */
+  #home {
+    width: 100vw;
+    height: 100vh;
+    background: #0B1120;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  /* 主页面标题 */
+  .home-title {
+    font-size: 28px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* 进入按钮 */
+  .enter-btn {
+    padding: 14px 36px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .enter-btn:hover {
+    background: #2563eb;
+    transform: translateY(-3px);
+  }
+
+  /* 子页面默认隐藏 */
+  #subPage {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease;
+  }
+
+  /* 切换动画 */
+  #home.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #subPage.show {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
+</head>
+<body>
+
+<!-- ====================== 主页面（极简） ====================== -->
+<div id="home">
+  <div class="home-title">欢迎来到签证查询工具</div>
+  <button class="enter-btn" onclick="openSubPage()">进入查询面板</button>
+</div>
+
+<!-- ====================== 子页面（你的完整代码） ====================== -->
+<div id="subPage">
+  <!-- 👇 把你自己的所有代码粘贴在这里 👇 -->
+  <style>
 /* ===== CSS Reset & Base ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -492,286 +572,82 @@ body {
   }
 }
 </style>
-</head>
-<body>
 
-<div class="bg-grid"></div>
-<div class="bg-glow bg-glow--blue"></div>
-<div class="bg-glow bg-glow--gold"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow--blue"></div>
+  <div class="bg-glow bg-glow--gold"></div>
 
-<div class="page-wrapper">
-
-  <!-- Header -->
-  <header class="header">
-    <div class="header__icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-blue)">
-        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-        <path d="M2 17l10 5 10-5"/>
-        <path d="M2 12l10 5 10-5"/>
-      </svg>
-    </div>
-    <h1 class="header__title">中国护照签证要求速查面板</h1>
-    <p class="header__subtitle">实时掌握全球签证政策，助力您的每一次出行。数据仅供参考，出行前请务必核实最新签证要求。</p>
-  </header>
-
-  <!-- Stats -->
-  <div class="stats" id="statsRow">
-    <div class="stat-card stat-card--free">
-      <div class="stat-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <div class="page-wrapper">
+    <header class="header">
+      <div class="header__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-blue)">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
       </div>
-      <div class="stat-card__number" data-target="47">0</div>
-      <div class="stat-card__label">免签国家/地区</div>
-    </div>
-    <div class="stat-card stat-card--arrival">
-      <div class="stat-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div class="stat-card__number" data-target="42">0</div>
-      <div class="stat-card__label">落地签国家</div>
-    </div>
-    <div class="stat-card stat-card--evisa">
-      <div class="stat-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      </div>
-      <div class="stat-card__number" data-target="35">0</div>
-      <div class="stat-card__label">电子签国家</div>
-    </div>
-    <div class="stat-card stat-card--required">
-      <div class="stat-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-      </div>
-      <div class="stat-card__number" data-target="126">0</div>
-      <div class="stat-card__label">需提前办签证</div>
-    </div>
-  </div>
+      <h1 class="header__title">中国护照签证要求速查面板</h1>
+      <p class="header__subtitle">实时掌握全球签证政策，助力您的每一次出行。数据仅供参考，出行前请务必核实最新签证要求。</p>
+    </header>
 
-  <!-- Filters -->
-  <div class="filters">
-    <div class="filters__group">
-      <span class="filters__label">按洲筛选</span>
-      <button class="filter-btn active" data-filter="continent" data-value="all">全部</button>
-      <button class="filter-btn" data-filter="continent" data-value="asia">亚洲</button>
-      <button class="filter-btn" data-filter="continent" data-value="europe">欧洲</button>
-      <button class="filter-btn" data-filter="continent" data-value="americas">美洲</button>
-      <button class="filter-btn" data-filter="continent" data-value="africa">非洲</button>
-      <button class="filter-btn" data-filter="continent" data-value="oceania">大洋洲</button>
-    </div>
-    <div class="filters__group">
-      <span class="filters__label">签证类型</span>
-      <button class="filter-btn active filter-btn--free" data-filter="visa" data-value="all">全部</button>
-      <button class="filter-btn" data-filter="visa" data-value="free">免签</button>
-      <button class="filter-btn" data-filter="visa" data-value="arrival">落地签</button>
-      <button class="filter-btn" data-filter="visa" data-value="evisa">电子签</button>
-      <button class="filter-btn" data-filter="visa" data-value="required">需签证</button>
-    </div>
-  </div>
-
-  <!-- Country Cards -->
-  <h2 class="section-title"><span class="section-title__bar"></span>全球目的地签证一览</h2>
-  <div class="countries-grid" id="countriesGrid">
-    <!-- Cards injected by JS -->
-  </div>
-
-  <!-- Top 5 -->
-  <div class="top5-section">
-    <h2 class="section-title"><span class="section-title__bar"></span>热门免签目的地 TOP 5</h2>
-    <div class="top5-grid" id="top5Grid">
-      <!-- Injected by JS -->
-    </div>
-  </div>
-
-  <footer class="footer">
-    <p>数据来源：各国使领馆及外交部公开信息汇总 · 最后更新：2026年5月 · 仅供参考，请以官方最新公布为准</p>
-  </footer>
-</div>
-
-<script>
-/* ===== Data ===== */
-const countries = [
-  { name: "泰国", flag: "🇹🇭", continent: "asia", visa: "free", days: "30天", note: "2024年起永久互免签证，可停留30天，可延期一次。" },
-  { name: "新加坡", flag: "🇸🇬", continent: "asia", visa: "free", days: "30天", note: "互免签证，每180天内累计不超过90天。" },
-  { name: "马来西亚", flag: "🇲🇾", continent: "asia", visa: "free", days: "30天", note: "2023年起对中国公民免签，停留不超过30天。" },
-  { name: "日本", flag: "🇯🇵", continent: "asia", visa: "required", days: "—", note: "需提前办理签证，团队旅游可走便利通道。" },
-  { name: "韩国", flag: "🇰🇷", continent: "asia", visa: "required", days: "—", note: "除济州岛免签外，大陆居民需提前办签。" },
-  { name: "阿联酋", flag: "🇦🇪", continent: "asia", visa: "free", days: "30天", note: "落地免签，可延期30天，共计60天。" },
-  { name: "卡塔尔", flag: "🇶🇦", continent: "asia", visa: "free", days: "30天", note: "互免签证协议，可停留30天，可延期。" },
-  { name: "印度尼西亚", flag: "🇮🇩", continent: "asia", visa: "arrival", days: "30天", note: "落地签/VOA，停留30天可延期一次。" },
-  { name: "越南", flag: "🇻🇳", continent: "asia", visa: "evisa", days: "45天", note: "可在线申请电子签，停留最长45天。" },
-  { name: "柬埔寨", flag: "🇰🇭", continent: "asia", visa: "arrival", days: "30天", note: "落地签或电子签，旅游签停留30天。" },
-  { name: "法国", flag: "🇫🇷", continent: "europe", visa: "required", days: "—", note: "需申根签证，获批后可通行26个申根国。" },
-  { name: "德国", flag: "🇩🇪", continent: "europe", visa: "required", days: "—", note: "申根签证，处理时间约5-15个工作日。" },
-  { name: "塞尔维亚", flag: "🇷🇸", continent: "europe", visa: "free", days: "30天", note: "欧亚地区首个对华免签国，每180天最多停留30天。" },
-  { name: "波黑", flag: "🇧🇦", continent: "europe", visa: "free", days: "90天", note: "每180天内免签停留不超过90天。" },
-  { name: "俄罗斯", flag: "🇷🇺", continent: "europe", visa: "evisa", days: "16天", note: "电子签证可停留16天，适用于远东、加里宁格勒等地区。" },
-  { name: "英国", flag: "🇬🇧", continent: "europe", visa: "required", days: "—", note: "需提前申请访客签证，处理时间约3周。" },
-  { name: "美国", flag: "🇺🇸", continent: "americas", visa: "required", days: "—", note: "需面试面签，B1/B2通常获发10年多次往返。" },
-  { name: "加拿大", flag: "🇨🦫", continent: "americas", visa: "required", days: "—", note: "需录指纹并面试，审批时间视领馆排队情况。" },
-  { name: "巴西", flag: "🇧🇷", continent: "americas", visa: "evisa", days: "90天", note: "2024年起可在线申请电子签证，有效期3年。" },
-  { name: "阿根廷", flag: "🇦🇷", continent: "americas", visa: "required", days: "—", note: "需提前办理签证，建议提前1-2个月申请。" },
-  { name: "墨西哥", flag: "🇲🇽", continent: "americas", visa: "required", days: "—", note: "持有效美签可免签入境，否则需提前办签。" },
-  { name: "埃及", flag: "🇪🇬", continent: "africa", visa: "arrival", days: "30天", note: "落地签，需携带往返机票和酒店订单。" },
-  { name: "毛里求斯", flag: "🇲🇺", continent: "africa", visa: "free", days: "60天", note: "互免签证，可停留60天，适合蜜月旅行。" },
-  { name: "塞舌尔", flag: "🇸🇨", continent: "africa", visa: "free", days: "30天", note: "免签，需持有有效护照、机票和住宿证明。" },
-  { name: "南非", flag: "🇿🇦", continent: "africa", visa: "required", days: "—", note: "需提前办签，审批约5-10个工作日。" },
-  { name: "肯尼亚", flag: "🇰🇪", continent: "africa", visa: "evisa", days: "90天", note: "电子签eTA系统，在线申请，通常3个工作日内出签。" },
-  { name: "澳大利亚", flag: "🇦🇺", continent: "oceania", visa: "required", days: "—", note: "需申请访客签证(600类)，处理时间不定。" },
-  { name: "新西兰", flag: "🇳🇿", continent: "oceania", visa: "required", days: "—", note: "需申请访客签证，持有效澳签可免签过境。" },
-  { name: "斐济", flag: "🇫🇯", continent: "oceania", visa: "free", days: "120天", note: "免签停留120天，是南太平洋热门目的地。" },
-  { name: "帕劳", flag: "🇵🇼", continent: "oceania", visa: "arrival", days: "30天", note: "落地签免费，需持有效护照和返程机票。" },
-];
-
-const top5 = [
-  { rank: 1, name: "泰国", flag: "🇹🇭", season: "11月-次年4月", days: "5-7天", desc: "免签30天，海岛丰富，性价比极高" },
-  { rank: 2, name: "新加坡", flag: "🇸🇬", season: "2月-4月 / 7月-9月", days: "3-4天", desc: "免签30天，城市花园，美食购物天堂" },
-  { rank: 3, name: "马来西亚", flag: "🇲🇾", season: "3月-10月", days: "4-6天", desc: "免签30天，多元文化，美食天堂" },
-  { rank: 4, name: "阿联酋", flag: "🇦🇪", continent: "asia", season: "11月-次年3月", days: "4-5天", desc: "免签30天（可延至60天），奢华与沙漠并存" },
-  { rank: 5, name: "塞尔维亚", flag: "🇷🇸", season: "4月-10月", days: "5-7天", desc: "欧洲首个对华免签国，物价低廉风景绝美" },
-];
-
-const continentNames = { asia: "亚洲", europe: "欧洲", americas: "美洲", africa: "非洲", oceania: "大洋洲" };
-const visaLabels = { free: "免签", arrival: "落地签", evisa: "电子签", required: "需签证" };
-
-/* ===== Render Countries ===== */
-function renderCountries(data) {
-  const grid = document.getElementById('countriesGrid');
-  if (data.length === 0) {
-    grid.innerHTML = `
-      <div class="no-results">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <p>暂无符合条件的目的地</p>
-      </div>`;
-    return;
-  }
-  grid.innerHTML = data.map((c, i) => `
-    <div class="country-card" data-continent="${c.continent}" data-visa="${c.visa}" style="animation-delay:${i * 0.05}s">
-      <div class="country-card__top">
-        <div class="country-card__flag">${c.flag}</div>
-        <div>
-          <div class="country-card__name">${c.name}</div>
-          <div class="country-card__continent">${continentNames[c.continent]}</div>
+    <div class="stats" id="statsRow">
+      <div class="stat-card stat-card--free">
+        <div class="stat-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
-        <span class="country-card__badge badge-${c.visa}">${visaLabels[c.visa]}</span>
+        <div class="stat-card__number" data-target="47">0</div>
+        <div class="stat-card__label">免签国家/地区</div>
       </div>
-      <div class="country-card__details">
-        <div class="country-card__detail">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          ${c.visa === 'required' ? '需办签证' : '停留 ' + c.days}
+      <div class="stat-card stat-card--arrival">
+        <div class="stat-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <div class="country-card__detail">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          ${continentNames[c.continent]}
-        </div>
+        <div class="stat-card__number" data-target="42">0</div>
+        <div class="stat-card__label">落地签国家</div>
       </div>
-      <div class="country-card__note">${c.note}</div>
-    </div>
-  `).join('');
-}
-
-/* ===== Render Top 5 ===== */
-function renderTop5() {
-  const grid = document.getElementById('top5Grid');
-  grid.innerHTML = top5.map(t => `
-    <div class="top5-card" data-rank="${t.rank}">
-      <div class="top5-card__rank">${t.rank}</div>
-      <div class="top5-card__flag">${t.flag}</div>
-      <div class="top5-card__name">${t.name}</div>
-      <div class="top5-card__meta">
-        <div class="top5-card__meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <span>最佳季节：</span>${t.season}
+      <div class="stat-card stat-card--evisa">
+        <div class="stat-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
-        <div class="top5-card__meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span>推荐停留：</span>${t.days}
+        <div class="stat-card__number" data-target="35">0</div>
+        <div class="stat-card__label">电子签国家</div>
+      </div>
+      <div class="stat-card stat-card--required">
+        <div class="stat-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
         </div>
-        <div class="top5-card__meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--visa-free)" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span>${t.desc}</span>
-        </div>
+        <div class="stat-card__number" data-target="126">0</div>
+        <div class="stat-card__label">需提前办签证</div>
       </div>
     </div>
-  `).join('');
-}
 
-/* ===== Filter Logic ===== */
-let activeContinent = 'all';
-let activeVisa = 'all';
+    <div class="filters">
+      <div class="filters__group">
+        <span class="filters__label">按洲筛选</span>
+        <button class="filter-btn active" data-filter="continent" data-value="all">全部</button>
+        <button class="filter-btn" data-filter="continent" data-value="asia">亚洲</button>
+        <button class="filter-btn" data-filter="continent" data-value="europe">欧洲</button>
+        <button class="filter-btn" data-filter="continent" data-value="americas">美洲</button>
+        <button class="filter-btn" data-filter="continent" data-value="africa">非洲</button>
+        <button class="filter-btn" data-filter="continent" data-value="oceania">大洋洲</button>
+      </div>
+      <div class="filters__group">
+        <span class="filters__label">签证类型</span>
+        <button class="filter-btn active filter-btn--free" data-filter="visa" data-value="all">全部</button>
+        <button class="filter-btn" data-filter="visa" data-value="free">免签</button>
+        <button class="filter-btn" data-filter="visa" data-value="arrival">落地签</button>
+        <button class="filter-btn" data-filter="visa" data-value="evisa">电子签</button>
+        <button class="filter-btn" data-filter="visa" data-value="required">需签证</button>
+      </div>
+    </div>
 
-function applyFilters() {
-  const cards = document.querySelectorAll('.country-card');
-  cards.forEach(card => {
-    const matchContinent = activeContinent === 'all' || card.dataset.continent === activeContinent;
-    const matchVisa = activeVisa === 'all' || card.dataset.visa === activeVisa;
-    if (matchContinent && matchVisa) {
-      card.classList.remove('hiding');
-      card.classList.add('showing');
-    } else {
-      card.classList.add('hiding');
-      card.classList.remove('showing');
-    }
-  });
-  // Update stats
-  updateStats();
-}
+    <h2 class="section-title"><span class="section-title__bar"></span>全球目的地签证一览</h2>
+    <div class="countries-grid" id="countriesGrid"></div>
 
-function updateStats() {
-  const visible = document.querySelectorAll('.country-card:not(.hiding)');
-  const counts = { free: 0, arrival: 0, evisa: 0, required: 0 };
-  visible.forEach(c => { counts[c.dataset.visa]++; });
-  // Animate stat cards subtle pulse
-  document.querySelectorAll('.stat-card').forEach(s => {
-    s.style.transform = 'scale(1.02)';
-    setTimeout(() => s.style.transform = '', 200);
-  });
-}
+    <div class="top5-section">
+      <h2 class="section-title"><span class="section-title__bar"></span>热门免签目的地 TOP 5</h2>
+      <div class="top5-grid" id="top5Grid"></div>
+    </div>
 
-/* ===== Filter Buttons ===== */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const filterType = btn.dataset.filter;
-    const value = btn.dataset.value;
-    // Update active state in same group
-    document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (filterType === 'continent') activeContinent = value;
-    else activeVisa = value;
-    applyFilters();
-  });
-});
-
-/* ===== Number Roll Animation ===== */
-function animateNumbers() {
-  document.querySelectorAll('.stat-card__number').forEach(el => {
-    const target = parseInt(el.dataset.target, 10);
-    const duration = 1500;
-    const start = performance.now();
-    function update(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      el.textContent = Math.round(target * eased);
-      if (progress < 1) requestAnimationFrame(update);
-      else el.textContent = target;
-    }
-    requestAnimationFrame(update);
-  });
-}
-
-/* ===== Card Hover Glow Track ===== */
-document.addEventListener('mousemove', e => {
-  document.querySelectorAll('.country-card:hover, .top5-card:hover').forEach(card => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-    card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-  });
-});
-
-/* ===== Init ===== */
-renderCountries(countries);
-renderTop5();
-// Delay number animation for effect
-setTimeout(animateNumbers, 400);
-</script>
-</body>
-</html>
+    <footer class="footer">
+      <p>数据来源：各国使领馆及外交部公开信息汇总 ·
